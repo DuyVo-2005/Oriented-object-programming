@@ -1,0 +1,129 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+void nhapMang(float*& p, int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "Nhap p[" << i << "] = ";
+        cin >> p[i];
+    }
+
+}
+void xuatMang(float* p, int n) {
+    for (int i = 0; i < n; i++) {
+        cout << p[i] << " ";
+    }
+    cout << endl;
+}
+void inPhanTuAm(float* p, int n) {
+    for (int i = 0; i < n; i++) {
+        if (p[i] < 0) {
+            cout << p[i] << " ";
+        }
+    }
+    cout<<"\n";
+}
+bool checkNT(float n) {
+    int m = (int)n;
+    for (int i = 2; i <= sqrt(m); i++) {
+        if (m % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+void inSoCoPhanNguyenLaNguyenTo(float* p, int n) {
+    for (int i = 0; i < n; i++)
+        if (checkNT(p[i]))
+            cout << p[i] << " ";
+    cout << "\n";
+}
+float *themPhanTuTaiViTrik(float *p, int &n, int k, float value) {
+    float* newP = new float[n];
+    int i = 0;
+    for (; i < k; i++)
+        newP[i] = p[i];
+    newP[k] = value;
+    for (i=k; i < n; i++)//
+        newP[i+1] = p[i];
+    n++;
+    delete [] p;//
+    return newP;
+}
+float *xoaPhanTuTaiViTrik(float *p, int &n, int k) {
+	float* newP=new float[n-1];
+	int i;
+	for(i=0;i<k;i++)
+		newP[i]=p[i];
+	for(i=k;i<n;i++)
+		newP[i]=p[i+1];
+	n--;
+	delete []p;
+	return newP;
+}
+int main()
+{
+    int flag = 1;
+    while (flag == 1) {
+        cout<<"Danh sach cac thao tac: "<<"\n";
+        cout << "1. Nhap mang" << "\n";
+        cout << "2. Xuat mang" << "\n";
+        cout << "3. In cac phan tu am" << "\n";
+        cout << "4. In cac so co phan nguyen la nguyen to" << "\n";
+        cout << "5. Them mot phan tu vao vi tri k" << "\n";
+        cout << "\n6. Xoa phan tu o vi tri k" << "\n";
+        cout << "Nhap 1 so nguyen duong (1->6) de chon 1 trong cac thao tac tren: ";
+        int tmp, n;
+        float* p;
+        cin >> tmp;
+        switch (tmp) {
+            case 1: {
+                cout << "Nhap so phan tu mang: ";
+                cin >> n;
+                p = new float[n];
+                nhapMang(p, n);
+                break;
+            }
+            case 2:{
+                cout<<"\n";
+                xuatMang(p, n);
+                cout<<"\n";
+                break;
+            }
+            case 3:{
+            	cout<<"Cac phan tu am trong mang: ";
+            	inPhanTuAm(p,n);
+            	break;
+            }
+            case 4:{
+            	cout<<"Cac so co phan nguyen la nguyen to: ";
+            	inSoCoPhanNguyenLaNguyenTo(p,n);
+            	break;
+            }
+            case 5:{
+            	float tmpCase5;
+            	int posCase5;
+            	cout<<"Nhap phan tu can them: ";
+            	cin>>tmpCase5;
+            	cout<<"Nhap vi tri chen: ";
+            	cin>>posCase5;
+            	p=themPhanTuTaiViTrik(p, n, posCase5, tmpCase5);
+            	xuatMang(p,n);
+            	break;
+            }
+            case 6:{
+            	int posCase6;
+            	cout<<"Nhap vi tri can xoa: ";
+            	cin>>posCase6;
+            	p=xoaPhanTuTaiViTrik(p,n,posCase6);
+            	xuatMang(p,n);
+            	break;
+            }
+            default:
+            	cout<<"So vua nhap khong hop le!"<<"\n";
+        }
+        cout<<"Nhap 1 thuc hien tiep, nhap 0 de dung: ";
+        cin>>flag;
+        system("cls");//Window
+        //system("clear");//macOs, Linux
+    }
+}
