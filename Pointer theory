@@ -1,0 +1,52 @@
+//Tham khao oop-hcmute
+#include<iostream>
+using namespace std;
+bool f(int x,int y){
+		return x<y;
+	}
+bool g(int x,int y){
+		return x>y;
+}
+int main(int argc, char *argv[])
+{
+/*
+	//mang con tro
+	int *a[3];
+	a[1]=new int;
+	a[2]=new int[5];
+	
+	short **b=new short *[3];
+	b[0]=NULL;
+	b[1]=new short;
+	b[2]=new short[5];
+*/
+/*
+	//con tro cap 2: luu dia chi cua con tro cap 1
+	float x = 1.5;
+	float*p = &x;
+	float**q = &p;
+	cout<<&x<<" "<<p<<" "<<q;
+	
+*/
+/*
+	//con tro hang: la con tro tro den 1 hang (quan ly vung nho co gia tri khong doi)
+	int x=1, y=2;
+	int *const p=&x;
+	p=&y;
+*/
+/*	
+	//hang con tro: ban than con tro la 1 hang (khong thay doi dia chi ma no dang luu-khong tro den dia chi khac)
+	int x=1;
+	const int *p=&x;
+	*p=2;
+*/
+/*
+	//con tro ham
+	bool (*p) (int,int);
+	p=&f;
+	cout<<p(1,2);
+	p=&g;
+	cout<<"\n"<<p(1,2);
+*/
+	return 0;	
+}
