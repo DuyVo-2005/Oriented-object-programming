@@ -1,0 +1,132 @@
+// phan so.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+using namespace std;
+class PhanSo {
+    /*
+    //khong duoc phep truy xuat private tu ben ngoai lop
+    private:
+        int tu;
+        int mau;
+    public:
+    //public truy xuat trong va ngoai lop
+        void nhap() {
+            cin >> tu >> mau;
+        }
+        void xuat() {
+            cout << tu << " " << mau;
+        }
+        void ganMau(int mauMoi) {
+            if(mauMoi!=0)
+                mau = mauMoi;
+        }
+    */
+    // con tro this: thuoc tinh doi tuong truyen vao.Vd: class a->this->a
+private:
+    //khong duoc phep truy xuat private tu ben ngoai lop
+    int tu;
+    int mau;
+public:
+    //public truy xuat trong va ngoai lop
+    //phuong thuc khoi tao-Chuan bi du lieu(constructor)
+    PhanSo() {
+        this->tu = 0;
+        this->mau = 1;
+    }
+    PhanSo(int tu, int mau) {
+        this->tu = tu;
+        if (mau != 0)
+            this->mau = mau;
+        else
+            this->mau = 1;
+    }
+    PhanSo(const PhanSo& x) {//cam ket ko doi x
+        this->tu = x.tu;
+        this->mau = x.mau;
+    }
+    void nhap() {
+        cin >> tu >> mau;
+    }
+    void xuat() {
+        cout << tu << " " << mau;
+    }
+    void ganMau(int mauMoi) {
+        /*
+        * int mau=0;//!= this->mau
+        */
+        if (mau != 0)
+            mau = mauMoi;
+    }
+    void ganTu(int tu) {
+        this->tu = tu;
+    }
+    int layTu() {
+        return this->tu;
+    }
+    int layMau() {
+        return this->mau;
+    }
+    PhanSo nhan(PhanSo b) {
+        PhanSo kq;
+        kq.ganTu(this->layTu() * b.layTu());
+        kq.ganMau(this->layMau() * b.layMau());
+        return kq;
+    }
+    PhanSo* nhan(PhanSo* b) {
+        PhanSo* kq=new PhanSo;
+        kq->tu = this->tu * b->tu;
+        kq->mau = this->mau * b->mau;
+        return kq;
+    }
+    /*PhanSo nhan(int x) {
+        PhanSo kq;
+        kq.tu = this->tu * x;
+        kq.mau = this->mau;
+        return kq;
+    }*/
+    PhanSo* nhan(int x) {
+        PhanSo* kq=new PhanSo;
+        kq->tu = this->tu * x;
+        kq->mau = this->mau;
+        return kq;
+
+    }
+};
+int main()
+{
+    /*PhanSo a;
+    a.nhap();
+    //a->ganMau(0);
+    //a.xuat();
+    //PhanSo b;
+    //b.nhap();
+    //b.xuat();
+    PhanSo c=a.nhan(5);
+    cout << "\n";
+    c.xuat();*/
+    /*PhanSo* a = new PhanSo;
+    PhanSo* b = new PhanSo;
+    a->nhap();
+    b->nhap();
+    PhanSo* c = a->nhan(5);
+    PhanSo* c = a->nhan(b);
+    c->xuat();*/
+    PhanSo a(1, 2);
+    //a.xuat();
+    PhanSo b(a);
+    b.xuat();
+    return 0;
+}
+
+
+// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
+// Debug program: F5 or Debug > Start Debugging menu
+
+// Tips for Getting Started: 
+//   1. Use the Solution Explorer window to add/manage files
+//   2. Use the Team Explorer window to connect to source control
+//   3. Use the Output window to see build output and other messages
+//   4. Use the Error List window to view errors
+//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
