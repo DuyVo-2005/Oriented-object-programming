@@ -42,6 +42,9 @@ public:
         //co con tro phai dung de quan ly theo y minh
     }
     void input() {
+        if (this->array != NULL)//neu array da ton tai muon ghi lai tu dau
+            delete[]this->array;
+
         cout << "Nhap kich thuoc cua array: ";
         cin >> this->size;
         array = new int[this->size];
