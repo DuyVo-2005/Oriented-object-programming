@@ -1,0 +1,90 @@
+#include <iostream>
+using namespace std;
+class IntArray {
+private:
+    int* array;
+    int size;
+public:
+    IntArray() {
+        //default
+        this->array = NULL;
+        this->size = 0;
+    }
+    IntArray(int* otherArrayName, int size=0) {
+        //parameter
+        if (size > 0) {
+            this->size = size;
+            //this->array = arrayName;//Khong an toan do quan ly chung vung nho->nen gan lai
+            this->array = new int[this->size];
+            for (int i = 0; i < this->size; i++)
+                this->array[i] = otherArrayName[i];
+        }
+        else {
+            this->size = 0;
+            this->array = NULL;
+        }
+    }
+    IntArray(const IntArray &nameIntArray) {
+        //copy: tao lap sao chep -> vung nho khac nhau -> chinh sua 1 cai ko anh huong cai kia
+        //khong viet ham nay->c++ van chay dung ()-> copy nong (chi lay dia chi) ->ko an toan (neu la con tro)
+        //this->array = nameIntArray.array;//ko an toan
+        if (nameIntArray.size > 0) {
+            this->size = nameIntArray.size;
+            this->array = new int[this->size];
+            for (int i = 0; i < this->size; i++)
+                this->array[i] = nameIntArray.array[i];
+        }
+        else {
+            this->size = 0;
+            this->array = NULL;
+        }
+        // deep copy
+        //co con tro phai dung de quan ly theo y minh
+    }
+    void input() {
+        cout << "Nhap kich thuoc cua array: ";
+        cin >> this->size;
+        array = new int[this->size];
+        for (int i = 0; i < this->size; i++) {
+            cout << "\nNhap array[" << i << "]= ";
+            cin >> this->array[i];
+        }
+    }
+    void print() {
+        cout << "\nKich thuoc int array: " << this->size<<"\n";
+        if (this->array == NULL)
+            cout << "Array khong co phan tu!";
+        else
+            for (int i = 0; i < this->size; i++)
+                cout << this->array[i] << " ";
+    }
+    int sum() {
+        int sum = 0;
+        for (int i = 0; i < this->size; i++)
+            sum += this->array[i];
+        return sum;
+    }
+    void del() {
+        delete []this->array;//
+        this->size = 0;
+    }
+};
+int main()
+{
+    int* b = new int[3];
+    b[0] = 1;
+    b[1] = 2;
+    b[2] = 3;
+    IntArray a(b,3);
+    a.print();
+    //a.print();
+    /*IntArray c;
+    c.input();*/
+    //c.print();
+    /*IntArray d(c);
+    d.print();
+    cout <<"\nTong: " << d.sum();*/
+    /*d.del();
+    d.print();*/
+    return 0;
+}
