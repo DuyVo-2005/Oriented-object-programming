@@ -1,0 +1,165 @@
+//Ho va ten: Vo Le Khanh Duy
+#include<iostream>
+using namespace std;
+int Ucln(int a, int b);
+class CPhanSo{
+	private:
+		int tuSo;
+		int mauSo;
+	public:
+		void nhap(){
+			cin>>this->tuSo;
+			cin>>this->mauSo;
+			if(this->mauSo==0)
+				this->mauSo=1;
+			this -> chuanHoa();
+
+		}
+		void xuat(){
+			cout<<this->tuSo<<" "<<this->mauSo;
+		}
+		void rutGon(){
+			int ucln=Ucln(this->tuSo,this->mauSo);
+			this->tuSo/=ucln;
+			this->mauSo/=ucln;
+			this->chuanHoa();
+		}
+		void chuanHoa(){
+			if(this->tuSo*this->mauSo<0){
+				if(this->mauSo<0){
+					//Phan so am
+					this->tuSo*=-1;
+					this->mauSo*=-1;
+				}
+			}
+			else{
+				//Phan so duong
+				if(this->tuSo==0)
+					this->mauSo=1;
+				else{
+					if(this->tuSo<0){
+						this->tuSo*=-1;
+						this->mauSo*=-1;
+					}
+				}
+			}
+		}
+		CPhanSo *cong(CPhanSo *y){
+			CPhanSo *res=new CPhanSo;
+			res->tuSo=this->tuSo*y->mauSo+this->mauSo*y->tuSo;
+			res->mauSo=this->mauSo*y->mauSo;
+			res->rutGon();
+			return res;
+		}
+		CPhanSo cong(CPhanSo y){
+			CPhanSo res;
+			res.tuSo=this->tuSo*y.mauSo+this->mauSo*y.tuSo;
+			res.mauSo=this->mauSo*y.mauSo;
+			res.rutGon();
+			return res;
+		}
+		CPhanSo nhan(CPhanSo y){
+			CPhanSo res;
+			res.tuSo=this->tuSo*y.tuSo;
+			res.mauSo=this->mauSo*y.mauSo;
+			res.rutGon();
+			return res;
+		}
+		bool soSanhBang(CPhanSo y){
+			this->rutGon();
+			y.rutGon();
+			if(this->tuSo==y.tuSo&&this->mauSo==y.mauSo)
+				return true;
+			return false;
+		}
+		float giaTriPhanSo(){
+			return float(this->tuSo)/this->mauSo;//
+		}
+		bool soSanhBe(CPhanSo y){
+			this->rutGon();
+			y.rutGon();
+			if(this->giaTriPhanSo()<y.giaTriPhanSo())
+				return true;
+			return false;
+		}
+		CPhanSo gan(const CPhanSo &y){
+			this->tuSo=y.tuSo;
+			this->mauSo=y.mauSo;
+		}
+		CPhanSo gan(int k){
+			this->tuSo=k;
+			this->mauSo=1;
+		}
+};
+
+int main(int argc, char *argv[])
+{
+	//CPhanSo a;
+//	a.nhap();
+//	a.xuat();
+	/*CPhanSo *a= new CPhanSo;
+	a->nhap();
+	//a->rutGon();
+	//a->chuanHoa();
+	a->xuat();*/
+	//cout<<"\n";
+//	a.rutGon();
+//	a.xuat();
+//	cout<<"\n";
+	
+	//CPhanSo z;
+//	z.nhap();
+//	z.chuanHoa();
+//	z.xuat();
+	/*CPhanSo *b= new CPhanSo;
+	b->nhap();
+	b->xuat();
+	CPhanSo *c=a->cong(b);*/
+	//CPhanSo b, c;
+//	b.nhap();
+//	b.xuat();
+//	cout<<"\n";
+//	c.nhap();
+//	c.xuat();
+//	cout<<"\n";
+//	CPhanSo d=b.cong(c);
+//	d.xuat();
+//	cout<<"\n";
+
+	//CPhanSo e1, e2;
+//	e1.nhap();
+//	e2.nhap();
+//	CPhanSo e=e1.nhan(e2);
+//	e.xuat();
+	//CPhanSo f1, f2;
+//	f1.nhap();
+//	f2.nhap();
+//	if(f1.soSanhBang(f2))
+//		cout<<"\nHai phan so bang nhau";
+//	else
+//		cout<<"\nHai phan so khong bang nhau";
+	CPhanSo g1, g2;
+	g1.nhap();
+	g2.nhap();
+	if(g1.soSanhBe(g2))
+		cout<<"\nBe hon";
+	else
+		cout<<"\nKhong be hon";
+	//a.gan(b);
+//	a.gan(5);
+//	a.xuat();
+	return 0;
+}
+/*
+-5 5
+1 -2
+
+*/
+int Ucln(int a, int b){
+	while(b%a!=0){//
+		int tmp=a%b;
+		a=b;
+		b=tmp;
+	}
+	return a;
+}
