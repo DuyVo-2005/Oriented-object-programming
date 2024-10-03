@@ -28,6 +28,7 @@ public:
         //copy: tao lap sao chep -> vung nho khac nhau -> chinh sua 1 cai ko anh huong cai kia
         //khong viet ham nay->c++ van chay dung ()-> copy nong (chi lay dia chi) ->ko an toan (neu la con tro)
         //this->array = nameIntArray.array;//ko an toan
+        cout<<"\nSao chep\n";
         if (nameIntArray.size > 0) {
             this->size = nameIntArray.size;
             this->array = new int[this->size];
@@ -72,14 +73,26 @@ public:
         this->size = 0;
     }
 };
+void test(IntArray a){
+}
 int main()
 {
-    int* b = new int[3];
+    /*int* b = new int[3];
     b[0] = 1;
     b[1] = 2;
     b[2] = 3;
     IntArray a(b,3);
-    a.print();
+    a.print();*/
+    
+/*
+	//3 truong hop goi ham tao lap sao chep
+	IntArray a;
+    IntArray c(a);
+    test(a);
+    IntArray b = a;
+    
+   */
+
     //a.print();
     /*IntArray c;
     c.input();*/
