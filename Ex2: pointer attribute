@@ -100,19 +100,36 @@ class CIntArray{
 				max = this->array[i];
 		return max;
 	}
-	CIntArray getEven(){
+	CIntArray getEven(){//sai
 		int countEven = 0;
 		for(int i=0;i<this->size;i++)
-			if(this->array[i]%2)
+			if(this->array[i]%2==0)
 				countEven++;
-		CIntArray *res = new CIntArray [countEven];//
+		CIntArray res;//khong cap phat truc tiep tren CIntArray vi co the gay leak memory
+		res.size = countEven;//
+		res.array = new int [res.size];//
 		int resIndex = 0;
 		for(int i=0;i<this->size;i++)
-			if(this->array[i]%2){
-				res->array[resIndex++] = this->array[i];//
-				res->size++;//
-			}
-		return *res;
+			if(this->array[i]%2==0)
+				res.array[resIndex++] = this->array[i];
+		return res;
+	}
+	void erase(int idx){
+		if(idx>=0&&idx<=this->size-1){
+			CIntArray res;
+			res.size = this->size - 1;
+			res.array = new int [res.size];
+			for(int i=0;i<idx;i++)//
+					res.array[i] = this->array[i];
+			for(int i=idx+1;i<this->size;i++)//
+				res.array[i-1] = this->array[i];
+			delete []this->array;
+			this->size = res.size;
+			this->array = new int [this->size];
+			for(int i=0;i<this->size;i++)
+				this->array[i] = res.array[i];
+			res.remove();
+		}
 	}
 };
 int main(int argc, char *argv[])
@@ -123,17 +140,18 @@ int main(int argc, char *argv[])
 	//CIntArray c(b,5);
 	//c.remove();
 	CIntArray c;
-	//c.input();
-	c.addElement(11);
+	c.input();
+//	c.addElement(11);
 	int *p=new int [2];
 	p[0] = 10, p[1] = 12;
-	c.addElement(p,2);
+//	c.addElement(p,2);
+	c.erase(15);
 	c.print();
 	//cout<<"\n"<<c.getElement(2);
 	//cout<<"\n"<<c.getSize();
 	//cout<<"\n"<<c.getSum();
 	//cout<<"\n"<<c.getMax();
-	CIntArray res = c.getEven();
-	res.print();
+	//CIntArray res = c.getEven();
+//	c.erase(5);
 	return 0;
 }
