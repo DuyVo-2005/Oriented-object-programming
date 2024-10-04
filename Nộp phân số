@@ -106,9 +106,11 @@ public:
 		// doi tuong duoc gan sua doi truc tiep , ko tao lap ban sao
 	}
 	CPhanSo &gan(CPhanSo y){
+		// ho tro goi lien hoan: vd: a.gan().print();
+		// dau &: tiet kiem bo nho, tiet kiem loi goi ham tao lap
 		this->tuSo = y.tuSo;
 		this->mauSo = y.mauSo;
-		return *this;
+		return *this;// tra ve gia tri this do this la con tro
 	}
 	void ganTu(int tuSo){
 		this->tuSo=tuSo;
@@ -220,7 +222,7 @@ int main(int argc, char* argv[])
 				cout<<"\nTest gan gia tri cua phan so h1 cho phan so h2: \n";
 				CPhanSo h1, h2;
 				h1.nhap();
-				h2=h2.gan(h1);
+				h2=h2.gan(h1);// hay h2.gan().print();
 				cout<<"\nPhan so h2 sau khi gan bang gia tri phan so h1: ";
 				h2.xuat();
 				break;
