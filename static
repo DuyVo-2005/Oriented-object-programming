@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+class A {
+public:
+    static int x;// tinh: thuoc  tinh dung chung cho tat ca cac doi tuong thuoc tinh. Neu trong private: ko dung duoc trong ham main
+    A() {
+        this->x = 0;
+    }
+    A(int x) {
+        this->x = x;
+    }
+};
+int A::x = 5; // co static phai co khoi tao nay
+int main()
+{
+    A A1(1);
+    A A2(2);
+    cout << A1.x << " " << A2.x;
+    return 0;
+}
