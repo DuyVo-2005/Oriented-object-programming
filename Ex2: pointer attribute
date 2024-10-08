@@ -155,3 +155,166 @@ int main(int argc, char *argv[])
 //	c.erase(5);
 	return 0;
 }
+/*
+#include<iostream>
+using namespace std;
+class CIntArray{
+	private:
+		int *array;
+		int size;
+	public:
+		CIntArray(){
+			array=NULL;
+			size = 0;
+		}
+		CIntArray(int otherArray[], int otherArraySize){
+			this->size=otherArraySize;
+			this->array = new int [this->size];
+			for(int i=0;i<this->size;i++)
+				this->array[i] = otherArray[i];
+		}
+		CIntArray(const CIntArray &other){
+			// tao lap sao chep ->  gan vao vung nho moi -> ko anh huong cai con lai khi thay doi 1 trong 2
+			this->size = other.size;
+			
+			for(int i=0;i<this->size;i++)
+				this->array[i] = other.array[i];
+		}
+		void input(){
+			cout<<"\nNhap kich thuoc mang can nhap: ";
+			cin>>this->size;
+			if(this->size!=0){
+				cout<<"Nhap cac phan tu mang:\n";
+				this->array = new int [this->size];
+				for(int i=0;i<this->size;i++){
+					cout<<"Nhap array["<<i<<"] = ";
+					cin>>this->array[i];
+				}
+			}
+		}
+		void print(){
+			cout<<"\nKich thuoc mang: "<<this->size;
+			if(this->size>0){
+				cout<<"\nCac phan tu mang: "<<"\n";
+				for(int i=0;i<this->size;i++)
+					cout<<this->array[i]<<" ";
+			}
+			else
+				cout<<"\nMang rong!";
+			cout<<"\n";
+		}
+	void remove(){
+		delete []this->array;
+		//this->array=NULL;		
+		this->size=0;
+	}
+	void addElement(int val){
+		// add last
+		if(this->size==0){
+			this->array = new int [1];
+			this->size = 1;
+		}
+		else{
+			this->size+=1;
+			int *tmp = new int[this->size];
+			for(int i=0;i<this->size-1;i++)
+				tmp[i]=this->array[i];
+			this->array = tmp;
+		}
+		array[this->size-1] = val;
+	}
+	void addElement(int *p, int n){
+		if(n>0){
+			int i;
+			int *tmp = new int[this->size+n];
+			for(i=0;i<this->size;i++)
+				tmp[i] = array[i];
+			this->size += n;
+			for(int j=0;i<this->size;i++, j++)
+			// 2 chen 3 vi tri chen 2
+			// tmp 2 = p0
+				tmp[i] = p[j];
+			array = tmp;
+		}
+	}
+	int getElement(int idx){
+		if(idx>=0&&idx<this->size)
+			return this->array[idx];
+		return -1;//khong co phan tu tai vi tri idx
+	}
+	int getSize(){
+			return this->size;
+	}
+	int getSum(){
+		long long sum = 0;
+		for(int i=0;i<this->size;i++)
+			sum += this->array[i];
+		return sum;
+	}
+	int getMax(){
+		int max = this->array[0];
+		for(int i=1;i<this->size;i++)
+			if(max<this->array[i])
+				max = this->array[i];
+		return max;
+	}
+	CIntArray getEven(){//sai
+		int countEven = 0;
+		for(int i=0;i<this->size;i++)
+			if(this->array[i]%2==0)
+				countEven++;
+		CIntArray res;//khong cap phat truc tiep tren CIntArray vi co the gay leak memory
+		res.size = countEven;//
+		res.array = new int [res.size];//
+		int resIndex = 0;
+		for(int i=0;i<this->size;i++)
+			if(this->array[i]%2==0)
+				res.array[resIndex++] = this->array[i];
+		return res;
+	}
+	void erase(int idx){
+		if(idx>=0&&idx<=this->size-1){
+			CIntArray res;
+			res.size = this->size - 1;
+			res.array = new int [res.size];
+			for(int i=0;i<idx;i++)//
+					res.array[i] = this->array[i];
+			for(int i=idx+1;i<this->size;i++)//
+				res.array[i-1] = this->array[i];
+			delete []this->array;
+			this->size = res.size;
+			this->array = new int [this->size];
+			for(int i=0;i<this->size;i++)
+				this->array[i] = res.array[i];
+			res.remove();
+		}
+	}
+	void insert(int idx, int val){
+		CIntArray tmp;
+		tmp.size = 
+	}
+};
+int main(int argc, char *argv[])
+{
+	//CIntArray a;
+//	a.print();
+	int b[5] ={1,2,3,4,5};
+	//CIntArray c(b,5);
+	//c.remove();
+	CIntArray c;
+	c.input();
+//	c.addElement(11);
+	int *p=new int [2];
+	p[0] = 10, p[1] = 12;
+//	c.addElement(p,2);
+	c.erase(15);
+	c.print();
+	//cout<<"\n"<<c.getElement(2);
+	//cout<<"\n"<<c.getSize();
+	//cout<<"\n"<<c.getSum();
+	//cout<<"\n"<<c.getMax();
+	//CIntArray res = c.getEven();
+//	c.erase(5);
+	return 0;
+}
+*/
