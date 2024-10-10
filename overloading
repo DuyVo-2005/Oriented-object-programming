@@ -1,18 +1,20 @@
-
+/*Nạp chồng toán tử là cách định nghĩa lại cách hoạt 
+động của toán tử khi sử dụng toán tử này với các đối 
+tượng thuộc về một lớp.*/
 #include <iostream>
 using namespace std;
 class PhanSo {
     /*
-    //khong duoc phep truy xuat private tu ben ngoai lop
+    //khong duoc phep truy print private tu ben ngoai lop
     private:
         int tu;
         int mau;
     public:
-    //public truy xuat trong va ngoai lop
+    //public truy print trong va ngoai lop
         void nhap() {
             cin >> tu >> mau;
         }
-        void xuat() {
+        void print() {
             cout << tu << " " << mau;
         }
         void ganMau(int mauMoi) {
@@ -22,11 +24,11 @@ class PhanSo {
     */
     // con tro this: thuoc tinh doi tuong truyen vao.Vd: class a->this->a
 private:
-    //khong duoc phep truy xuat private tu ben ngoai lop
+    //khong duoc phep truy print private tu ben ngoai lop
     int tu;
     int mau;
 public:
-    //public truy xuat trong va ngoai lop
+    //public truy print trong va ngoai lop
     //phuong thuc khoi tao-Chuan bi du lieu(constructor)
     PhanSo() {
         this->tu = 0;
@@ -46,7 +48,7 @@ public:
     void nhap() {
         cin >> tu >> mau;
     }
-    void xuat() {
+    void print() {
         cout << tu << " " << mau;
     }
     void ganMau(int mauMoi) {
@@ -126,27 +128,28 @@ int main()
     /*PhanSo a;
     a.nhap();
     //a->ganMau(0);
-    //a.xuat();
+    //a.print();
     //PhanSo b;
     //b.nhap();
-    //b.xuat();
+    //b.print();
     PhanSo c=a.nhan(5);
     cout << "\n";
-    c.xuat();*/
+    c.print();*/
     /*PhanSo* a = new PhanSo;
     PhanSo* b = new PhanSo;
     a->nhap();
     b->nhap();
     PhanSo* c = a->nhan(5);
     PhanSo* c = a->nhan(b);
-    c->xuat();*/
+    c->print();*/
     PhanSo a(1, 2), b(1,1);
-    //a.xuat();
+    //a.print();
     //PhanSo b(a);
-    //PhanSo c = a + b;
+    PhanSo c = a + b;//<-> a.operator+(b)
+    c.print();
     /*PhanSo c;
     ++c;
-    c.xuat();*/
-    cout<<a<<" " << b;
+    c.print();*/
+    //cout<<a<<" " << b;
     return 0;
 }
