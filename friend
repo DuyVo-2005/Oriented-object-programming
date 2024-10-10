@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+class A {
+private:
+    int x=1;
+    // friend: lam cho cac bien trong private de truy xuat -> tiet kiem viec viet ham (scope=tam vuc)
+public:
+    friend class B;// A coi B la ban: truy xuat mot chieu B->A (lop ban)
+    friend void testGlobal();// A coi ham testGlobal la ban (ham bam)
+};
+class B{
+public:
+    void test() {
+        A a;
+        cout << a.x;
+    }
+};
+void testGlobal() {
+    A a;
+    cout << a. x;
+}
+int main()
+{
+
+    return 0;
+}
