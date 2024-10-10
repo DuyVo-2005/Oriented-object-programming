@@ -1,0 +1,72 @@
+#include<iostream>
+using namespace std;
+#define endl "\n"
+int GCD(int a, int b);
+class CPhanSo{
+	private:
+		int tuSo;
+		int mauSo;
+	public:
+		CPhanSo(){
+			this->tuSo = 0;
+			this->mauSo = 1;
+		}
+		CPhanSo(int newTu){
+			this->tuSo = newTu;
+			this->mauSo = 1;
+		}
+		CPhanSo(int newTu, int newMau){
+			this->tuSo = newTu;
+			this->mauSo = newMau;
+		}
+		CPhanSo(const CPhanSo &other){
+			this->tuSo = other.tuSo;
+			this->mauSo = other.mauSo;
+		}
+		void rutGon(){
+			int UCLN = GCD(this->tuSo,this->mauSo);
+			this->tuSo /= UCLN;			
+			this->mauSo /= UCLN;				
+		}
+		void print(){
+			cout<<this->tuSo<<"/"<<this->mauSo;
+		}
+		CPhanSo operator+(const CPhanSo &other){
+			CPhanSo res;
+			res.tuSo = this->tuSo*other.mauSo + this->mauSo*other.tuSo;
+			res.mauSo = this->mauSo*other.mauSo;
+			res.rutGon();
+			return res;
+		}
+		CPhanSo operator++(){
+			//tien to -> cong truoc
+			//ko tham so this nam trai toan tu
+			this->tuSo += this->mauSo;
+			return *this;
+		}
+		CPhanSo operator++(int){//nummy: tham so gia
+			//co tham so -> this nam trai toan tu
+			//hau to -> cong sau
+			CPhanSo res(*this);
+			res.tuSo += this->mauSo;
+			return res;
+		}
+};
+int main(int argc, char *argv[])
+{
+	CPhanSo ps1(1,2);
+	CPhanSo ps2(ps1);
+	//CPhanSo res = ++ps1+ps2;//ps1.operator+(ps2)
+	//++ps1;
+	ps1++;
+	ps1.print();
+	return 0;
+}
+int GCD(int a, int b){
+	while(a%b != 0){
+		int tmp = a%b;
+		b = a;
+		a = tmp;
+	}
+	return b;
+}
