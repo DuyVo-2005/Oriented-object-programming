@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+class MyClass {
+public:
+    // Constructor
+    MyClass() {
+        cout << "Object created!" << endl;
+    }
+
+    // Destructor
+    ~MyClass() {
+        cout << "Object destroyed!" << endl;
+    }
+};
+
+int main() {
+    MyClass obj;  // Tạo đối tượng
+    return 0;     // Khi kết thúc chương trình, đối tượng sẽ bị hủy, và destructor được gọi
+}
