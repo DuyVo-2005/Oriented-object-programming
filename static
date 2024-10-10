@@ -18,7 +18,7 @@ public:
     static void test() {
         //static -> truy xuat thong qua doi tuong bat ky
         //chi dc truy xuat static attribute
-        cout << "\nHello";
+        cout << "\nHello";        
         //cout << y;//sai
     }
     void test2(){
@@ -30,8 +30,10 @@ int main()
 {
     A A1(1);
     A A2(2);
-    //cout << A1.x << " " << A2.x;
-    //cout << A::x;
+    //A A1, A2;
+    cout << A1.x << " " << A2.x;
+    cout <<"\n"<<A::x;
+    A::test();
     A1.test2();
     return 0;
 }
