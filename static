@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 using namespace std;
 class A {
 public:
@@ -16,5 +16,39 @@ int main()
     A A1(1);
     A A2(2);
     cout << A1.x << " " << A2.x;
+    return 0;
+}*/
+
+#include <iostream>
+using namespace std;
+class A {
+public:
+    static int x;// tinh: thuoc tinh dung chung cho tat ca cac doi tuong thuoc tinh trong lop.
+    //Neu trong private: ko dung duoc trong ham main
+    int y;// non statis -> truy xuat sai (do la thuoc tinh rieng)
+    A() {
+        this->x = 0;
+    }
+    A(int x) {
+        this->x = x;
+    }
+    static void test() {
+        //static -> truy xuat thong qua doi tuong bat ky
+        //chi dc truy xuat static attribute
+        cout << "\nHello";
+        //cout << y;//sai
+    }
+    void test2(){
+        cout << x;//ok
+    }
+};
+int A::x = 5; // co static phai co khoi tao nay
+int main()
+{
+    A A1(1);
+    A A2(2);
+    //cout << A1.x << " " << A2.x;
+    //cout << A::x;
+    A1.test2();
     return 0;
 }
