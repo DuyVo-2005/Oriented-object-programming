@@ -1,12 +1,17 @@
+/*● Từ khóa: friend
+● Hàm bạn hay lớp bạn có thể truy xuất được đến 
+thành phần private của lớp coi nó là bạn.
+○ A coi B là bạn của A → B được truy xuất đến 
+thành phần private của A.*/
 #include <iostream>
 using namespace std;
 class A {
 private:
     int x=1;
-    // friend: lam cho cac bien trong private de truy xuat -> tiet kiem viec viet ham (scope=tam vuc)
+    // friend: lam cho cac ben trong private de truy xuat -> tiet kiem viec viet ham (scope = tam vuc)
 public:
-    friend class B;// A coi B la ban: truy xuat mot chieu B->A (lop ban)
-    friend void testGlobal();// A coi ham testGlobal la ban (ham bam)
+    friend class B;// A coi B la ban: truy xuat mot chieu B->A (lop ban - friend class)
+    friend void testGlobal();// A coi ham testGlobal la ban (ham ban - friend function)
 };
 class B{
 public:
@@ -21,6 +26,8 @@ void testGlobal() {
 }
 int main()
 {
-
+	/*B b;
+	b.test();*/
+	testGlobal();
     return 0;
 }
