@@ -42,16 +42,21 @@ class CPhanSo{
 			//tien to -> cong truoc
 			//ko tham so this nam trai toan tu
 			this->tuSo += this->mauSo;
-			return *this;
+			return *this;//tra ve chinh doi tuong
 		}
 		CPhanSo operator++(int){//nummy: tham so gia
 			//co tham so -> this nam trai toan tu
 			//hau to -> cong sau
-			CPhanSo res(*this);
-			res.tuSo += this->mauSo;
-			return res;
+			CPhanSo res(*this);//luu gia tri hien tai cua doi tuong
+			this->tuSo += this->mauSo;// cong sau
+			return res;// tra ve gia tri truoc khi tang
 		}
+	friend ostream& operator<<(ostream& out, CPhanSo &p);
 };
+ostream& operator<<(ostream& out, CPhanSo &p){
+	out << p.tuSo << "/" << p.mauSo;
+	return out;//goi lien hoan cout<<a<<b;
+}
 int main(int argc, char *argv[])
 {
 	CPhanSo ps1(1,2);
@@ -59,7 +64,9 @@ int main(int argc, char *argv[])
 	//CPhanSo res = ++ps1+ps2;//ps1.operator+(ps2)
 	//++ps1;
 	ps1++;
-	ps1.print();
+	
+	//ps1.print();
+	cout<<ps1<<" "<<ps2;
 	return 0;
 }
 int GCD(int a, int b){
