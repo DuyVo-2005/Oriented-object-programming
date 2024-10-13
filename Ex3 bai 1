@@ -1,4 +1,4 @@
-//Ho va ten: Vo Le Khanh Dua
+//Ho va ten: Vo Le Khanh Duy
 #include<iostream>
 using namespace std;
 int Ucln(int a, int b);
@@ -89,9 +89,6 @@ public:
 			return true;
 		return false;
 	}
-	float giaTriPhanSo() {
-		return float(this->tuSo) / this->mauSo;//
-	}
 	bool soSanhBe(CPhanSo a) {
 		//Ho va ten: Vo Le Khanh Dua
 		this->rutGon();
@@ -128,7 +125,7 @@ public:
 	CPhanSo operator+(const CPhanSo& y) {
         //co tham so this nam ben phai toan tu
         CPhanSo res;
-        res.tu = this->tuSo * y.mauSo+ this->mauSo * y.tuSo;
+        res.tuSo = this->tuSo * y.mauSo+ this->mauSo * y.tuSo;
         res.mauSo = this->mauSo * y.mauSo;
         return res;
     }
@@ -139,151 +136,231 @@ public:
 			res.rutGon();
 			return res;
 		}
+		
+	float giaTriPhanSo() {
+		return float(this->tuSo) / this->mauSo;//
+	}
+	bool operator>( CPhanSo &other){
+		
+		return (this->giaTriPhanSo() > other.giaTriPhanSo());
+	}
+	bool operator<(CPhanSo &other){
+		return (this->giaTriPhanSo() < other.giaTriPhanSo());
+	}
+	bool operator>=( CPhanSo &other){
+		
+		return (this->giaTriPhanSo() >= other.giaTriPhanSo());
+	}
+	bool operator<=( CPhanSo &other){
+		
+		return (this->giaTriPhanSo() <= other.giaTriPhanSo());
+	}
+	bool operator==(CPhanSo &other){
+		return this->giaTriPhanSo() == other.giaTriPhanSo();
+	}
+	CPhanSo operator=(CPhanSo &other){
+		this->tuSo = other.tuSo;
+		this-> mauSo = other.mauSo;
+	}
+	CPhanSo operator+=(const CPhanSo &other){
+		this->tuSo = this->tuSo*other.mauSo + this->mauSo*other.tuSo;
+		this->mauSo *= other.mauSo;
+		this->rutGon();	
+	}
+	CPhanSo operator-=(const CPhanSo &other){
+		this->tuSo = this->tuSo*other.mauSo - this->mauSo*other.tuSo;
+		this->mauSo *= other.mauSo;
+		this->rutGon();	
+	}
+	CPhanSo operator*=(CPhanSo &other){
+		this->tuSo *= other.tuSo;
+		this->mauSo *= other.mauSo;
+		this->rutGon();
+	}
+	CPhanSo operator/=(CPhanSo &other){
+		this->tuSo *= other.mauSo;
+		this->mauSo *= other.tuSo;
+		this->rutGon();
+	}
+	int* operator.*(CPhanSo &p){
+		if(this != NULL)
+			delete []this;
+		this = new int [2];
+		this[0] = p.tuSo;
+		this[1] = p.mauSo;
+	}
+	friend istream& operator>>(istream &in, CPhanSo &p);
+	friend ostream& operator<<(ostream& out, const CPhanSo &p);
 };
-
+istream& operator>>(istream &in, CPhanSo &p){//ko const do co lam thay doi o
+	cout<<"Nhap tu so: ";
+	in >> p.tuSo;
+	cout<<"Nhap mau so: ";
+    in >> p.mauSo;
+	return in;
+}
+ostream& operator<<(ostream& out, const CPhanSo &p){
+		out << p.tuSo << "/" << p.mauSo;
+		return out;
+}
 int main(int argc, char* argv[])
 {
-	bool Break = false;
-	int n = -1, tmp = -1;
-	while(Break == false){
-		cout<<"\n----------\n";
-		cout<<"Danh sach cac thao tac: \n";
-		cout<<"\n1.Test nhap xuat phan so";
-		cout<<"\n2.Test rut gon phan so";
-		cout<<"\n3.Test chuan hoa phan so";
-		cout<<"\n4.Test tinh tong hai phan so";
-		cout<<"\n5.Test tinh tich hai phan so";
-		cout<<"\n6.Test so sanh bang hai phan so";
-		cout<<"\n7.Test so sanh be hai phan so";
-		cout<<"\n8.Test gan gia tri cua phan so a cho phan so b";
-		cout<<"\n9.Test gan gia tri so nguyen cho phan so\n";
-		cout<<"\nNhap so tuong ung thao tac can thuc hien [1->9]: ";
-		cin>>n;
-		switch(n){
-			case 1:{
-				CPhanSo a;
-				cout<<"\nTest nhap xuat phan so: "<<"\n";
-				a.nhap();
-				a.xuat();
-			//	CPhanSo *a= new CPhanSo;
-			/*	a->nhap();
-				a->rutGon();
-				a->chuanHoa();
-				a->xuat();*/
-				//cout<<"\n";
-				break;
-			}
-			case 2:{
-				cout<<"\nTest rut gon phan so: \n";
-				CPhanSo a;
-				a.nhap();
-				a.rutGon();
-				cout<<"\nPhan so sau khi rut gon: ";
-				a.xuat();
-				cout<<"\n";
-				break;
-			}
-			case 3:{
-				cout<<"\nTest chuan hoa phan so: \n";
-				CPhanSo a;
-				a.nhap();
-				cout<<"\nPhan so sau khi chuan hoa: ";
-				a.chuanHoa();
-				a.xuat();
-				break;
-			}
-			case 4:{
-				cout<<"\nTest tinh tong hai phan so: \n";
-				CPhanSo a, b;
-				a.nhap();
-				a.xuat();
-				cout<<"\n";
-				b.nhap();
-				b.xuat();
-				cout<<"\nTong hai phan so vua nhap: ";
-				CPhanSo c = a + b;
-				//or CPhanSo c=a.cong(b);
-				
-				c.xuat();
-				cout<<"\n";
-				/*CPhanSo *a, *b= new CPhanSo;
-				a->nhap();
-				b->nhap();
-				CPhanSo *c=a->cong(b);*/
-				break;
-			}
-			case 5:{
-				cout<<"\nTest tinh tich hai phan so: \n";
-				CPhanSo a, b;
-				a.nhap();
-				b.nhap();
-				CPhanSo c=a.nhan(b);
-				cout<<"\nTich hai phan so vua nhap: ";
-				c.xuat();
-				break;
-			}
-			case 6:{
-				cout<<"\nTest so sanh bang hai phan so: \n";
-				CPhanSo a, b;
-				a.nhap();
-				b.nhap();
-				if(a.soSanhBang(b))
-					cout<<"\nHai phan so bang nhau";
-				else
-					cout<<"\nHai phan so khong bang nhau";
-				break;
-			}
-			case 7:{	
-				cout<<"\nTest so sanh be hai phan so: \n";
-				CPhanSo a, b;
-				a.nhap();
-				b.nhap();
-				if (a.soSanhBe(b))
-					cout << "\nBe hon";
-				else
-					cout << "\nKhong be hon";	
-				break;
-			}
-			case 8:{
-				cout<<"\nTest gan gia tri cua phan so a cho phan so b: \n";
-				CPhanSo a, b;
-				a.nhap();
-				b=b.gan(a);
-				cout<<"\nPhan so b sau khi gan bang gia tri phan so a: ";
-				b.xuat();
-				break;
-			}
-			case 9:{
-				cout<<"\nTest gan gia tri so nguyen cho phan so: \n";
-				CPhanSo a;
-				int k;
-				cout<<"\nNhap so nguyen k can gan cho phan so a: ";
-				cin>>k;
-				a = a.gan(k);
-				cout<<"\nPhan so a sau khi gan gia tri nguyen k la: ";
-				a.xuat();
-				break;
-			}
-			case 10:{
-				
-				break;
-			}
-			default:{
-				cout<<"\nSo vua nhap khong hop le! Chuong trinh ket thuc tai day! ";
-				Break = true;
-				break;
-			}
-		}
-		while(Break == false&&tmp!=1){
-			cout<<"\nNhap 1 de lam tiep, nhap 0 de dung: ";
-			cin>>tmp;
-			if(tmp==0)
-				Break = true;
-		}
-	}
+	CPhanSo a, b;
+	cin >> a >> b;
+	cout << a <<" "<< b;
+	int *kq = a*.;
+	cout<<kq[0]<<kq[1];
+	//cin >> a;
+	//cin >> b;
+	//a/=b;
+	//a.xuat();
+	
+	
+//	bool Break = false;
+//	int n = -1, tmp = -1;
+//	while(Break == false){
+//		cout<<"\n----------\n";
+//		cout<<"Danh sach cac thao tac: \n";
+//		cout<<"\n1.Test nhap xuat phan so";
+//		cout<<"\n2.Test rut gon phan so";
+//		cout<<"\n3.Test chuan hoa phan so";
+//		cout<<"\n4.Test tinh tong hai phan so";
+//		cout<<"\n5.Test tinh tich hai phan so";
+//		cout<<"\n6.Test so sanh bang hai phan so";
+//		cout<<"\n7.Test so sanh be hai phan so";
+//		cout<<"\n8.Test gan gia tri cua phan so a cho phan so b";
+//		cout<<"\n9.Test gan gia tri so nguyen cho phan so\n";
+//		cout<<"\nNhap so tuong ung thao tac can thuc hien [1->9]: ";
+//		cin>>n;
+//		switch(n){
+//			case 1:{
+//				CPhanSo a;
+//				cout<<"\nTest nhap xuat phan so: "<<"\n";
+//				a.nhap();
+//				a.xuat();
+//			//	CPhanSo *a= new CPhanSo;
+//			/*	a->nhap();
+//				a->rutGon();
+//				a->chuanHoa();
+//				a->xuat();*/
+//				//cout<<"\n";
+//				break;
+//			}
+//			case 2:{
+//				cout<<"\nTest rut gon phan so: \n";
+//				CPhanSo a;
+//				a.nhap();
+//				a.rutGon();
+//				cout<<"\nPhan so sau khi rut gon: ";
+//				a.xuat();
+//				cout<<"\n";
+//				break;
+//			}
+//			case 3:{
+//				cout<<"\nTest chuan hoa phan so: \n";
+//				CPhanSo a;
+//				a.nhap();
+//				cout<<"\nPhan so sau khi chuan hoa: ";
+//				a.chuanHoa();
+//				a.xuat();
+//				break;
+//			}
+//			case 4:{
+//				cout<<"\nTest tinh tong hai phan so: \n";
+//				CPhanSo a, b;
+//				a.nhap();
+//				a.xuat();
+//				cout<<"\n";
+//				b.nhap();
+//				b.xuat();
+//				cout<<"\nTong hai phan so vua nhap: ";
+//				CPhanSo c = a + b;
+//				//or CPhanSo c=a.cong(b);
+//				
+//				c.xuat();
+//				cout<<"\n";
+//				/*CPhanSo *a, *b= new CPhanSo;
+//				a->nhap();
+//				b->nhap();
+//				CPhanSo *c=a->cong(b);*/
+//				break;
+//			}
+//			case 5:{
+//				cout<<"\nTest tinh tich hai phan so: \n";
+//				CPhanSo a, b;
+//				a.nhap();
+//				b.nhap();
+//				CPhanSo c=a.nhan(b);
+//				cout<<"\nTich hai phan so vua nhap: ";
+//				c.xuat();
+//				break;
+//			}
+//			case 6:{
+//				cout<<"\nTest so sanh bang hai phan so: \n";
+//				CPhanSo a, b;
+//				a.nhap();
+//				b.nhap();
+//				if(a.soSanhBang(b))
+//					cout<<"\nHai phan so bang nhau";
+//				else
+//					cout<<"\nHai phan so khong bang nhau";
+//				break;
+//			}
+//			case 7:{	
+//				cout<<"\nTest so sanh be hai phan so: \n";
+//				CPhanSo a, b;
+//				a.nhap();
+//				b.nhap();
+//				if (a.soSanhBe(b))
+//					cout << "\nBe hon";
+//				else
+//					cout << "\nKhong be hon";	
+//				break;
+//			}
+//			case 8:{
+//				cout<<"\nTest gan gia tri cua phan so a cho phan so b: \n";
+//				CPhanSo a, b;
+//				a.nhap();
+//				b=b.gan(a);
+//				cout<<"\nPhan so b sau khi gan bang gia tri phan so a: ";
+//				b.xuat();
+//				break;
+//			}
+//			case 9:{
+//				cout<<"\nTest gan gia tri so nguyen cho phan so: \n";
+//				CPhanSo a;
+//				int k;
+//				cout<<"\nNhap so nguyen k can gan cho phan so a: ";
+//				cin>>k;
+//				a = a.gan(k);
+//				cout<<"\nPhan so a sau khi gan gia tri nguyen k la: ";
+//				a.xuat();
+//				break;
+//			}
+//			case 10:{
+//				
+//				break;
+//			}
+//			default:{
+//				cout<<"\nSo vua nhap khong hop le! Chuong trinh ket thuc tai day! ";
+//				Break = true;
+//				break;
+//			}
+//		}
+//		while(Break == false&&tmp!=1){
+//			cout<<"\nNhap 1 de lam tiep, nhap 0 de dung: ";
+//			cin>>tmp;
+//			if(tmp==0)
+//				Break = true;
+//		}
+//	}
+
+	
 	return 0;
 }
 int Ucln(int a, int b) {
+	if(a==0)	return b;
+	if(b==0)	return a;
 	while (b % a != 0) {//
 		int tmp = a % b;
 		a = b;
@@ -291,83 +368,3 @@ int Ucln(int a, int b) {
 	}
 	return a;
 }
-/*#include<iostream>
-using namespace std;
-#define endl "\n"
-int GCD(int a, int b);
-class CPhanSo{
-	private:
-		int tuSo;
-		int mauSo;
-	public:
-		CPhanSo(){
-			this->tuSo = 0;
-			this->mauSo = 1;
-		}
-		CPhanSo(int newTu){
-			this->tuSo = newTu;
-			this->mauSo = 1;
-		}
-		CPhanSo(int newTu, int newMau){
-			this->tuSo = newTu;
-			this->mauSo = newMau;
-		}
-		CPhanSo(const CPhanSo &other){
-			this->tuSo = other.tuSo;
-			this->mauSo = other.mauSo;
-		}
-		void rutGon(){
-			int UCLN = GCD(this->tuSo,this->mauSo);
-			this->tuSo /= UCLN;			
-			this->mauSo /= UCLN;				
-		}
-		void print(){
-			cout<<this->tuSo<<"/"<<this->mauSo;
-		}
-		CPhanSo operator+(const CPhanSo &other){
-			CPhanSo res;
-			res.tuSo = this->tuSo*other.mauSo + this->mauSo*other.tuSo;
-			res.mauSo = this->mauSo*other.mauSo;
-			res.rutGon();
-			return res;
-		}
-		CPhanSo operator++(){
-			//tien to -> cong truoc
-			//ko tham so this nam trai toan tu
-			this->tuSo += this->mauSo;
-			return *this;//tra ve chinh doi tuong
-		}
-		CPhanSo operator++(int){//nummy: tham so gia
-			//co tham so -> this nam trai toan tu
-			//hau to -> cong sau
-			CPhanSo res(*this);//luu gia tri hien tai cua doi tuong
-			this->tuSo += this->mauSo;// cong sau
-			return res;// tra ve gia tri truoc khi tang
-		}
-	friend ostream& operator<<(ostream& out, CPhanSo &p);
-};
-ostream& operator<<(ostream& out, CPhanSo &p){
-	out << p.tuSo << "/" << p.mauSo;
-	return out;//goi lien hoan cout<<a<<b;
-}
-int main(int argc, char *argv[])
-{
-	CPhanSo ps1(1,2);
-	CPhanSo ps2(ps1);
-	//CPhanSo res = ++ps1+ps2;//ps1.operator+(ps2)
-	//++ps1;
-	ps1++;
-	
-	//ps1.print();
-	cout<<ps1<<" "<<ps2;
-	return 0;
-}
-int GCD(int a, int b){
-	while(a%b != 0){
-		int tmp = a%b;
-		b = a;
-		a = tmp;
-	}
-	return b;
-}
-*/
