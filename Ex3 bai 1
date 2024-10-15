@@ -1,101 +1,3 @@
-//hp
-//#include<iostream>
-//using namespace std;
-//#define endl "\n"
-//int GCD(int a, int b);
-//class CPhanSo {
-//private:
-//	int tuSo;
-//	int mauSo;
-//public:
-//	CPhanSo() {
-//		this->tuSo = 0;
-//		this->mauSo = 1;
-//	}
-//	CPhanSo(int newTu) {
-//		this->tuSo = newTu;
-//		this->mauSo = 1;
-//	}
-//	CPhanSo(int newTu, int newMau) {
-//		this->tuSo = newTu;
-//		this->mauSo = newMau;
-//	}
-//	CPhanSo(const CPhanSo& other) {
-//		this->tuSo = other.tuSo;
-//		this->mauSo = other.mauSo;
-//	}
-//	void rutGon() {
-//		int UCLN = GCD(this->tuSo, this->mauSo);
-//		this->tuSo /= UCLN;
-//		this->mauSo /= UCLN;
-//	}
-//	void print() {
-//		cout << this->tuSo << "/" << this->mauSo;
-//	}
-//	CPhanSo operator+(const CPhanSo& other) {
-//		CPhanSo res;
-//		res.tuSo = this->tuSo * other.mauSo + this->mauSo * other.tuSo;
-//		res.mauSo = this->mauSo * other.mauSo;
-//		res.rutGon();
-//		return res;
-//	}
-//	CPhanSo operator-(const CPhanSo& other) {
-//		CPhanSo res;
-//		res.tuSo = this->tuSo * other.mauSo - this->mauSo * other.tuSo;
-//		res.mauSo = this->mauSo * other.mauSo;
-//		res.rutGon();
-//		return res;
-//	}
-//	CPhanSo operator*(const CPhanSo &other) {
-//		CPhanSo res;
-//		res.tuSo = this->tuSo * other.tuSo;
-//		res.mauSo = this->mauSo * other.mauSo;
-//		return res;
-//	}
-//	CPhanSo operator++() {
-//		//tien to -> cong truoc
-//		//ko tham so this nam trai toan tu
-//		this->tuSo += this->mauSo;
-//		return *this;//tra ve chinh doi tuong
-//	}
-//	CPhanSo operator++(int) {//nummy: tham so gia
-//		//co tham so -> this nam trai toan tu
-//		//hau to -> cong sau
-//		CPhanSo res(*this);//luu gia tri hien tai cua doi tuong
-//		this->tuSo += this->mauSo;// cong sau
-//		return res;// tra ve gia tri truoc khi tang
-//	}
-//	friend ostream& operator<<(ostream& out, CPhanSo& p);
-//};
-//ostream& operator<<(ostream& out, CPhanSo& p) {
-//	out << p.tuSo << "/" << p.mauSo;
-//	return out;//goi lien hoan cout<<a<<b;
-//}
-//int main(int argc, char* argv[])
-//{
-//	CPhanSo ps1(1, 2);
-//	CPhanSo ps2(ps1);
-//	//CPhanSo res = ++ps1+ps2;//ps1.operator+(ps2)
-//	//++ps1;
-//	//ps1++;
-//
-//	//ps1.print();
-//	//cout << ps1 << " " << ps2;
-//	CPhanSo ps3 = ps1 - ps2;
-//	cout << ps3;
-//
-//	return 0;
-//}
-//int GCD(int a, int b) {
-//	while (a % b != 0) {
-//		int tmp = a % b;
-//		b = a;
-//		a = tmp;
-//	}
-//	return b;
-//}
-
-
 //Ho va ten: Vo Le Khanh Duy
 #include<iostream>
 using namespace std;
@@ -105,7 +7,7 @@ private:
 	int tuSo;
 	int mauSo;
 public:
-		CPhanSo() {
+	CPhanSo() {
 		//Ho va ten: Vo Le Khanh Duy
 		this->tuSo = 0;
 		this->mauSo = 1;
@@ -118,7 +20,7 @@ public:
 	CPhanSo(int newTu, int newMau) {
 		//Ho va ten: Vo Le Khanh Duy
 		this->tuSo = newTu;
-		if(newMau != 0)
+		if (newMau != 0)
 			this->mauSo = newMau;
 		else
 			this->mauSo = 1;
@@ -274,7 +176,7 @@ public:
 		this->rutGon();
 		return res;// tra ve gia tri truoc khi tang
 	}
-	CPhanSo operator++(){
+	CPhanSo operator++() {
 		//Ho va ten: Vo Le Khanh Duy
 		//tien to -> cong truoc
 		//ko tham so this nam trai toan tu
@@ -294,77 +196,83 @@ public:
 		//Ho va ten: Vo Le Khanh Duy
 		return float(this->tuSo) / this->mauSo;//
 	}
-	bool operator>(CPhanSo &other){
+	bool operator>(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		return (this->giaTriPhanSo() > other.giaTriPhanSo());
 	}
-	bool operator<(CPhanSo &other){
+	bool operator<(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		return (this->giaTriPhanSo() < other.giaTriPhanSo());
 	}
-	bool operator>=( CPhanSo &other){
+	bool operator>=(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		return (this->giaTriPhanSo() >= other.giaTriPhanSo());
 	}
-	bool operator<=( CPhanSo &other){
+	bool operator<=(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		return (this->giaTriPhanSo() <= other.giaTriPhanSo());
 	}
-	bool operator==(CPhanSo &other){
+	bool operator==(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		return this->giaTriPhanSo() == other.giaTriPhanSo();
 	}
-	CPhanSo operator=(CPhanSo &other){
+	CPhanSo operator=(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		this->tuSo = other.tuSo;
-		this-> mauSo = other.mauSo;
+		this->mauSo = other.mauSo;
+		return *this;
 	}
-	CPhanSo operator+=(const CPhanSo &other){
+	CPhanSo &operator+=(const CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
-		this->tuSo = this->tuSo*other.mauSo + this->mauSo*other.tuSo;
+		this->tuSo = this->tuSo * other.mauSo + this->mauSo * other.tuSo;
 		this->mauSo *= other.mauSo;
-		this->rutGon();	
-	}
-	CPhanSo operator-=(const CPhanSo &other){
+		this->rutGon();
+		return *this;
+	}//them va se lay dia chi truc tiep -> tramh goi lai ham tao lap sao chep o dong return *this
+	CPhanSo &operator-=(const CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
-		this->tuSo = this->tuSo*other.mauSo - this->mauSo*other.tuSo;
+		this->tuSo = this->tuSo * other.mauSo - this->mauSo * other.tuSo;
 		this->mauSo *= other.mauSo;
-		this->rutGon();	
+		this->rutGon();
+		return *this;
 	}
-	CPhanSo operator*=(CPhanSo &other){
+	CPhanSo &operator*=(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		this->tuSo *= other.tuSo;
 		this->mauSo *= other.mauSo;
 		this->rutGon();
+		return *this;
 	}
-	CPhanSo operator/=(CPhanSo &other){
+	CPhanSo &operator/=(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		this->tuSo *= other.mauSo;
 		this->mauSo *= other.tuSo;
 		this->rutGon();
+		return *this;
+
 	}
-/*	int* operator.*(CPhanSo &p){
-		if(this != NULL)
-			delete []this;
-		this = new int [2];
-		this[0] = p.tuSo;
-		this[1] = p.mauSo;
-	}*/
-	friend istream& operator>>(istream &in, CPhanSo &p);
-	friend ostream& operator<<(ostream& out, const CPhanSo &p);
+	/*	int* operator.*(CPhanSo &p){
+			if(this != NULL)
+				delete []this;
+			this = new int [2];
+			this[0] = p.tuSo;
+			this[1] = p.mauSo;
+		}*/
+	friend istream& operator>>(istream& in, CPhanSo& p);
+	friend ostream& operator<<(ostream& out, const CPhanSo& p);
 };
-istream& operator>>(istream &in, CPhanSo &p){//ko const do co lam thay doi o
+istream& operator>>(istream& in, CPhanSo& p) {//ko const do co lam thay doi o
 	//Ho va ten: Vo Le Khanh Duy
-	cout<<"Nhap tu so: ";
+	cout << "Nhap tu so: ";
 	in >> p.tuSo;
-	cout<<"Nhap mau so: ";
-    in >> p.mauSo;
+	cout << "Nhap mau so: ";
+	in >> p.mauSo;
 	return in;
 }
-ostream& operator<<(ostream& out, const CPhanSo &p){
-		//Ho va ten: Vo Le Khanh Duy
-		out << p.tuSo << "/" << p.mauSo;
-		return out;
+ostream& operator<<(ostream& out, const CPhanSo& p) {
+	//Ho va ten: Vo Le Khanh Duy
+	out << p.tuSo << "/" << p.mauSo;
+	return out;
 }
 int main(int argc, char* argv[])
 {
@@ -373,10 +281,10 @@ int main(int argc, char* argv[])
 	while (Break == false) {
 		cout << "\n----------\n";
 		cout << "Danh sach cac thao tac: \n";
-		cout<<"\n1. Test tao lap mac dinh";
-		cout<<"\n2. Test tao lap mot tham so";
-		cout<<"\n3. Test tao lap hai tham so";
-		cout<<"\n4. Test tao lap sao chep";
+		cout << "\n1. Test tao lap mac dinh";
+		cout << "\n2. Test tao lap mot tham so";
+		cout << "\n3. Test tao lap hai tham so";
+		cout << "\n4. Test tao lap sao chep";
 		cout << "\n5. Test tinh tong hai phan so  (dung operator +)";
 		cout << "\n6. Test tinh hieu hai phan so  (dung operator -)";
 		cout << "\n7. Test tinh tich hai phan so  (dung operator *)";
@@ -390,48 +298,48 @@ int main(int argc, char* argv[])
 		cout << "\n15. So sanh phan so be hon hoac bang (dung operator <=)";
 		cout << "\n16. So sanh phan so  bang (dung operator ==)";
 		cout << "\n17. Gan phan so (dung operator =)";
-		cout<<"\n18. operator += ";
-		cout<<"\n19. operator -= ";
-		cout<<"\n20. operator *= ";
-		cout<<"\n21. operator /= ";
-		cout<<"\n22. operator >> ";
-		cout<<"\n23. operator << ";
+		cout << "\n18. operator += ";
+		cout << "\n19. operator -= ";
+		cout << "\n20. operator *= ";
+		cout << "\n21. operator /= ";
+		cout << "\n22. operator >> ";
+		cout << "\n23. operator << ";
 		cout << "\nNhap so tuong ung thao tac can thuc hien [1->23]: ";
 		cin >> n;
 		switch (n) {
-		case 1:{
+		case 1: {
 			CPhanSo a;
 			cout << a;
 			break;
 		}
-		case 2:{
+		case 2: {
 			int parameter;
-			cout<<"Nhap 1 tham so can truyen (so nguyen): ";
-			cin>>parameter;
+			cout << "Nhap 1 tham so can truyen (so nguyen): ";
+			cin >> parameter;
 			CPhanSo a(parameter);
-			cout<<"Phan so sau khi tao lap: ";
+			cout << "Phan so sau khi tao lap: ";
 			cout << a;
 			break;
 		}
-		case 3:{
+		case 3: {
 			int parameter1, parameter2;
-			cout<<"Nhap 2 tham so can truyen (so nguyen): ";
-			cin>>parameter1>>parameter2;
-			CPhanSo a(parameter1,parameter2);
-			cout<<"Phan so sau khi tao lap: ";
+			cout << "Nhap 2 tham so can truyen (so nguyen): ";
+			cin >> parameter1 >> parameter2;
+			CPhanSo a(parameter1, parameter2);
+			cout << "Phan so sau khi tao lap: ";
 			cout << a;
 			break;
 		}
-		case 4:{
+		case 4: {
 			CPhanSo a;
-			cout<<"Nhap phan so: \n";
+			cout << "Nhap phan so: \n";
 			cin >> a;
 			a.chuanHoa();
 			a.rutGon();
 			CPhanSo b(a);
-			cout<<"Phan so sau khi tao lap sao chep phan so vua nhap: ";
-			cout<<b;
-			break;	
+			cout << "Phan so sau khi tao lap sao chep phan so vua nhap: ";
+			cout << b;
+			break;
 		}
 		case 5: {
 			cout << "\nTest tinh tong hai phan so  (dung operator +):";
@@ -480,7 +388,7 @@ int main(int argc, char* argv[])
 			cout << "\nTest cong 1 vao phan so  (dung operator ++) - hau to: \n";//hau to
 			CPhanSo a;
 			a.nhap();
-			cout<<"Phan so sau khi cong 1: ";
+			cout << "Phan so sau khi cong 1: ";
 			a++;
 			cout << a;
 			break;
@@ -503,137 +411,137 @@ int main(int argc, char* argv[])
 			cout << a;
 			break;
 		}
-		case 12:{
+		case 12: {
 			cout << "\nSo sanh phan so lon (dung operator >)";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
-			if(a > b)
-				cout<<"Phan so thu nhat lon hon";
+			if (a > b)
+				cout << "Phan so thu nhat lon hon";
 			else
-				cout<<"Phan so thu nhat khong lon hon";
+				cout << "Phan so thu nhat khong lon hon";
 			break;
 		}
-		case 13:{			
+		case 13: {
 			cout << "\n13. So sanh phan so be (dung operator <)";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
-			if(a < b)
-				cout<<"Phan so thu nhat be hon";
+			if (a < b)
+				cout << "Phan so thu nhat be hon";
 			else
-				cout<<"Phan so thu nhat khong be hon";
+				cout << "Phan so thu nhat khong be hon";
 			break;
 		}
-		case 14:{
+		case 14: {
 			cout << "\nSo sanh phan so lon hon hoac bang (dung operator >=)";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
-			if(a >= b)
-				cout<<"Phan so thu nhat lon hon hoac bang phan so thu hai";
+			if (a >= b)
+				cout << "Phan so thu nhat lon hon hoac bang phan so thu hai";
 			else
-				cout<<"Phan so thu nhat khong lon hon hoac bang phan so thu hai";
+				cout << "Phan so thu nhat khong lon hon hoac bang phan so thu hai";
 			break;
 		}
-		case 15:{
+		case 15: {
 			cout << "\nSo sanh phan so be hon hoac bang (dung operator <=)";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
-			if(a <= b)
-				cout<<"Phan so thu nhat be hon hoac bang phan so thu hai";
+			if (a <= b)
+				cout << "Phan so thu nhat be hon hoac bang phan so thu hai";
 			else
-				cout<<"Phan so thu nhat khong be hon hoac bang phan so thu hai";
+				cout << "Phan so thu nhat khong be hon hoac bang phan so thu hai";
 			break;
 		}
-		case 16:{
+		case 16: {
 			cout << "\nSo sanh phan so  bang (dung operator ==)";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
-			if(a == b)
-				cout<<"Phan so thu nhat bang phan so thu hai";
+			if (a == b)
+				cout << "Phan so thu nhat bang phan so thu hai";
 			else
-				cout<<"Phan so thu nhat khong bang phan so thu hai";
+				cout << "Phan so thu nhat khong bang phan so thu hai";
 			break;
 		}
-		case 17:{
+		case 17: {
 			cout << "\n17. Gan phan so (dung operator =)";
 			CPhanSo a, b;
 			a.nhap();
 			b = a;
-			cout<<"Phan so sau khi gan bang phan so vua nhap: ";
+			cout << "Phan so sau khi gan bang phan so vua nhap: ";
 			b.xuat();
 			break;
 		}
-		case 18:{
-			cout<<"\n18. operator += ";
+		case 18: {
+			cout << "\n18. operator += ";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
 			a += b;
-			cout<<"Phan so a sau khi += phan so b: ";
+			cout << "Phan so a sau khi += phan so b: ";
 			a.xuat();
 			break;
 		}
-		case 19:{
-			cout<<"\nTest operator -= ";
+		case 19: {
+			cout << "\nTest operator -= ";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
 			a -= b;
-			cout<<"Phan so a sau khi -= phan so b: ";
+			cout << "Phan so a sau khi -= phan so b: ";
 			a.xuat();
 			break;
 		}
-		case 20:{
-			cout<<"\nTest operator *= ";
+		case 20: {
+			cout << "\nTest operator *= ";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
 			a *= b;
-			cout<<"Phan so a sau khi *= phan so b: ";
+			cout << "Phan so a sau khi *= phan so b: ";
 			a.xuat();
 			break;
 		}
-		case 21:{
-			cout<<"\nTest operator /= ";
+		case 21: {
+			cout << "\nTest operator /= ";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
 			a /= b;
-			cout<<"Phan so a sau khi /= phan so b: ";
+			cout << "Phan so a sau khi /= phan so b: ";
 			a.xuat();
 			break;
 		}
-		case 22:{
-			cout<<"\nTest operator >> ";
+		case 22: {
+			cout << "\nTest operator >> ";
 			CPhanSo a(5), b;
 			cin >> a >> b;
 			a.xuat();
 			b.xuat();
 			break;
 		}
-		case 23:{
-			cout<<"\nTest operator << ";
+		case 23: {
+			cout << "\nTest operator << ";
 			CPhanSo a, b;
 			a.nhap();
 			b.nhap();
-			cout << a<< "\n" << b;
+			cout << a << "\n" << b;
 			break;
 		}
 		default: {
 			cout << "\nSo vua nhap khong hop le! Chuong trinh ket thuc tai day! ";
 			Break = true;
 			break;
-		}		
-	}
+		}
+		}
 		while (Break == false && tmp != 1) {
 			cout << "\nNhap 1 de lam tiep, nhap 0 de dung: ";
 			cin >> tmp;
 			if (tmp == 0)
-					Break = true;
+				Break = true;
 		}
 	}
 	return 0;
