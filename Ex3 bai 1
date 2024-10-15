@@ -39,8 +39,8 @@ public:
 		cin >> this->mauSo;
 		if (this->mauSo == 0)
 			this->mauSo = 1;
+		this->rutGon();
 		this->chuanHoa();
-
 	}
 	void xuat() {
 		//Ho va ten: Vo Le Khanh Duy
@@ -192,6 +192,10 @@ public:
 		res.rutGon();
 		return res;
 	}
+	CPhanSo operator--(){
+		this->tuSo -= this->mauSo;
+		return *this;
+	}
 	float giaTriPhanSo() {
 		//Ho va ten: Vo Le Khanh Duy
 		return float(this->tuSo) / this->mauSo;//
@@ -228,7 +232,7 @@ public:
 		this->mauSo *= other.mauSo;
 		this->rutGon();
 		return *this;
-	}//them va se lay dia chi truc tiep -> tramh goi lai ham tao lap sao chep o dong return *this
+	}//them vao se lay dia chi truc tiep -> tranh goi lai ham tao lap sao chep o dong return *this
 	CPhanSo &operator-=(const CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		this->tuSo = this->tuSo * other.mauSo - this->mauSo * other.tuSo;
@@ -245,11 +249,17 @@ public:
 	}
 	CPhanSo &operator/=(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
-		this->tuSo *= other.mauSo;
-		this->mauSo *= other.tuSo;
-		this->rutGon();
-		return *this;
-
+		if(other.tuSo != 0){
+			this->tuSo *= other.mauSo;
+			this->mauSo *= other.tuSo;
+			this->rutGon();
+			return *this;
+		}
+		else{
+			this->tuSo = 0;
+			this->mauSo = 0;
+			return*this;
+		}
 	}
 	/*	int* operator.*(CPhanSo &p){
 			if(this != NULL)
@@ -258,6 +268,9 @@ public:
 			this[0] = p.tuSo;
 			this[1] = p.mauSo;
 		}*/
+	int layMau(){
+		return this->mauSo;
+	}
 	friend istream& operator>>(istream& in, CPhanSo& p);
 	friend ostream& operator<<(ostream& out, const CPhanSo& p);
 };
@@ -267,6 +280,8 @@ istream& operator>>(istream& in, CPhanSo& p) {//ko const do co lam thay doi o
 	in >> p.tuSo;
 	cout << "Nhap mau so: ";
 	in >> p.mauSo;
+	p.rutGon();
+	p.chuanHoa();
 	return in;
 }
 ostream& operator<<(ostream& out, const CPhanSo& p) {
@@ -304,7 +319,7 @@ int main(int argc, char* argv[])
 		cout << "\n21. operator /= ";
 		cout << "\n22. operator >> ";
 		cout << "\n23. operator << ";
-		cout << "\nNhap so tuong ung thao tac can thuc hien [1->23]: ";
+		cout << "\nNhap so tuong ung thao tac can thuc hien [1->24]: ";
 		cin >> n;
 		switch (n) {
 		case 1: {
@@ -481,7 +496,7 @@ int main(int argc, char* argv[])
 			a.nhap();
 			b.nhap();
 			a += b;
-			cout << "Phan so a sau khi += phan so b: ";
+			cout << "Phan so a sau khi += phan so b: \n";
 			a.xuat();
 			break;
 		}
@@ -491,7 +506,7 @@ int main(int argc, char* argv[])
 			a.nhap();
 			b.nhap();
 			a -= b;
-			cout << "Phan so a sau khi -= phan so b: ";
+			cout << "Phan so a sau khi -= phan so b: \n";
 			a.xuat();
 			break;
 		}
@@ -501,7 +516,7 @@ int main(int argc, char* argv[])
 			a.nhap();
 			b.nhap();
 			a *= b;
-			cout << "Phan so a sau khi *= phan so b: ";
+			cout << "Phan so a sau khi *= phan so b: \n";
 			a.xuat();
 			break;
 		}
@@ -511,24 +526,34 @@ int main(int argc, char* argv[])
 			a.nhap();
 			b.nhap();
 			a /= b;
-			cout << "Phan so a sau khi /= phan so b: ";
-			a.xuat();
+			if(a.layMau() != 0){
+				cout << "Phan so a sau khi /= phan so b: \n";
+				a.xuat();
+			}
+			else
+				cout<<"Loi chia khong!";
 			break;
 		}
 		case 22: {
-			cout << "\nTest operator >> ";
-			CPhanSo a(5), b;
-			cin >> a >> b;
+			cout << "\nTest operator >> \n";
+			CPhanSo a(5);
+			cin >> a;
 			a.xuat();
-			b.xuat();
 			break;
 		}
 		case 23: {
-			cout << "\nTest operator << ";
-			CPhanSo a, b;
+			cout << "\nTest operator << \n";
+			CPhanSo a;
 			a.nhap();
-			b.nhap();
-			cout << a << "\n" << b;
+			cout << a;
+			break;
+		}
+		case 24: {
+			cout<<"\noperator-- tien to\n";
+			CPhanSo a;
+			cin >> a;
+			--a;
+			cout << a;
 			break;
 		}
 		default: {
