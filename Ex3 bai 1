@@ -503,15 +503,131 @@ int main(int argc, char* argv[])
 			cout << a;
 			break;
 		}
+		case 12:{
+			cout << "\nSo sanh phan so lon (dung operator >)";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			if(a > b)
+				cout<<"Phan so thu nhat lon hon";
+			else
+				cout<<"Phan so thu nhat khong lon hon";
+			break;
+		}
+		case 13:{			
+			cout << "\n13. So sanh phan so be (dung operator <)";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			if(a < b)
+				cout<<"Phan so thu nhat be hon";
+			else
+				cout<<"Phan so thu nhat khong be hon";
+			break;
+		}
+		case 14:{
+			cout << "\nSo sanh phan so lon hon hoac bang (dung operator >=)";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			if(a >= b)
+				cout<<"Phan so thu nhat lon hon hoac bang phan so thu hai";
+			else
+				cout<<"Phan so thu nhat khong lon hon hoac bang phan so thu hai";
+			break;
+		}
+		case 15:{
+			cout << "\nSo sanh phan so be hon hoac bang (dung operator <=)";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			if(a <= b)
+				cout<<"Phan so thu nhat be hon hoac bang phan so thu hai";
+			else
+				cout<<"Phan so thu nhat khong be hon hoac bang phan so thu hai";
+			break;
+		}
+		case 16:{
+			cout << "\nSo sanh phan so  bang (dung operator ==)";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			if(a == b)
+				cout<<"Phan so thu nhat bang phan so thu hai";
+			else
+				cout<<"Phan so thu nhat khong bang phan so thu hai";
+			break;
+		}
+		case 17:{
+			cout << "\n17. Gan phan so (dung operator =)";
+			CPhanSo a, b;
+			a.nhap();
+			b = a;
+			cout<<"Phan so sau khi gan bang phan so vua nhap: ";
+			b.xuat();
+			break;
+		}
+		case 18:{
+			cout<<"\n18. operator += ";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			a += b;
+			cout<<"Phan so a sau khi += phan so b: ";
+			a.xuat();
+			break;
+		}
+		case 19:{
+			cout<<"\nTest operator -= ";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			a -= b;
+			cout<<"Phan so a sau khi -= phan so b: ";
+			a.xuat();
+			break;
+		}
+		case 20:{
+			cout<<"\nTest operator *= ";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			a *= b;
+			cout<<"Phan so a sau khi *= phan so b: ";
+			a.xuat();
+			break;
+		}
+		case 21:{
+			cout<<"\nTest operator /= ";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			a /= b;
+			cout<<"Phan so a sau khi /= phan so b: ";
+			a.xuat();
+			break;
+		}
+		case 22:{
+			cout<<"\nTest operator >> ";
+			CPhanSo a(5), b;
+			cin >> a >> b;
+			a.xuat();
+			b.xuat();
+			break;
+		}
+		case 23:{
+			cout<<"\nTest operator << ";
+			CPhanSo a, b;
+			a.nhap();
+			b.nhap();
+			cout << a<< "\n" << b;
+			break;
+		}
 		default: {
 			cout << "\nSo vua nhap khong hop le! Chuong trinh ket thuc tai day! ";
 			Break = true;
 			break;
-		}
-		case 12:{
-			
-			break;
-		}
+		}		
 	}
 		while (Break == false && tmp != 1) {
 			cout << "\nNhap 1 de lam tiep, nhap 0 de dung: ";
