@@ -220,7 +220,7 @@ public:
 		//Ho va ten: Vo Le Khanh Duy
 		return this->giaTriPhanSo() == other.giaTriPhanSo();
 	}
-	CPhanSo operator=(CPhanSo& other) {
+	CPhanSo& operator=(CPhanSo& other) {
 		//Ho va ten: Vo Le Khanh Duy
 		this->tuSo = other.tuSo;
 		this->mauSo = other.mauSo;
